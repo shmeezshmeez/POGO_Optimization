@@ -1,87 +1,123 @@
-
----
-
-# Pokémon Operations Research Optimizer
-
-## Overview
-
-This project aims to use operations research techniques to optimize the selection of Pokémon based on various constraints and objective functions, such as maximizing "coolness" while adhering to a limited "stardust" budget. The project is a blend of data analytics, operations research, and software development.
+# Pokémon GO Collection Optimizer
 
 ## Table of Contents
 
-1. [Getting Started](#getting-started)
-2. [Prerequisites](#prerequisites)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Technologies Used](#technologies-used)
-6. [Database Schema](#database-schema)
-7. [Contributing](#contributing)
-8. [License](#license)
-9. [Acknowledgments](#acknowledgments)
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Future Enhancements](#future-enhancements)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Getting Started
+---
 
-Clone this repo to your local machine to get started with the project.
+## Introduction
 
-```bash
-git clone https://github.com/yourusername/Pokemon-OR-Optimizer.git
-```
+The Pokémon GO Collection Optimizer is a comprehensive tool designed to help Pokémon GO players optimize their Pokémon collections. Utilizing Optical Character Recognition (OCR), MySQL databases, and linear programming techniques, the project aims to find the optimal set of Pokémon to power up based on a custom "coolness" metric, while also considering constraints such as stardust budget and candy limits.
 
-## Prerequisites
+---
 
-- Python 3.x
-- MySQL
-- PuLP library for Python
-- Other libraries and dependencies are listed in the `requirements.txt` file.
+## Features
+
+### OCR (POGO_OCR.py)
+
+- Captures key Pokémon metrics like Combat Power (CP), Current HP, Total HP, and Stardust using Google Vision API.
+- Stores OCR results in a pandas DataFrame for subsequent analysis and optimization.
+
+### Database Management (POGOR.sql)
+
+- Defines the schema for various tables that store Pokémon attributes, moves, and types.
+- Populates initial data to kickstart the optimization process.
+
+### Optimization (pogo_OR.py)
+
+- Fetches Pokémon data from a MySQL database.
+- Uses linear programming to optimize the Pokémon collection based on a "coolness" metric.
+- Considers various constraints like stardust budget and candy limits.
+
+---
+
+## Technology Stack
+
+- **Programming Language**: Python
+- **OCR**: Google Vision API
+- **Database**: MySQL
+- **Linear Programming Library**: PuLP
+
+---
 
 ## Installation
 
-1. Install Python dependencies:
+### Prerequisites
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+- Python 3.x
+- MySQL
+- Google Vision API credentials
 
-2. Set up your MySQL database and note down your credentials.
+### Steps
 
-3. Update the `DB_CONFIG` variable in the script to match your database credentials.
+1. Clone the repository:
+
+```
+git clone https://github.com/your-username/pokemon-go-optimizer.git
+```
+
+2. Navigate to the project directory:
+
+```
+cd pokemon-go-optimizer
+```
+
+3. Install the required packages:
+
+```
+pip install -r requirements.txt
+```
+
+4. Set up the MySQL database using the provided SQL file (`POGOR.sql`):
+
+```
+mysql -u root -p < POGOR.sql
+```
+
+5. Add your Google Vision API credentials to `POGO_OCR.py`.
+
+---
 
 ## Usage
 
-Run the main Python script to start the optimization process.
+1. Run the OCR script to capture and store Pokémon metrics:
 
-```bash
+```
+python POGO_OCR.py
+```
+
+2. Run the optimization script to find the optimal set of Pokémon to power up:
+
+```
 python pogo_OR.py
 ```
 
-This will generate an optimal selection of Pokémon based on the constraints specified in the script.
+---
 
-## Technologies Used
+## Future Enhancements
 
-- Python
-- MySQL
-- PuLP (Python library for linear programming)
-- SQL queries for data manipulation and retrieval
+- Integration with Tableau for interactive visualization and constraint adjustments.
+- Real-time OCR and database updates.
+- Additional optimization constraints and objectives.
 
-## Database Schema
-
-The database schema is available as a SQL dump in the `schema.sql` file.
-
-To import the schema into your MySQL database:
-
-```bash
-mysql -u [username] -p [database_name] < schema.sql
-```
+---
 
 ## Contributing
 
-If you would like to contribute or have any suggestions, please fork the repository and create a new pull request, or open an issue.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See `LICENSE.md` for more details.
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Acknowledgments
-
-- Credits to the Pokémon database sources.
-
+---
